@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun FormField(label: String, isPassword: Boolean = false, isNumber: Boolean = false) {
+fun FormField(label: String, textState: String, onTextChange: (String) -> Unit, isPassword: Boolean = false, isNumber: Boolean = false) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -35,8 +35,8 @@ fun FormField(label: String, isPassword: Boolean = false, isNumber: Boolean = fa
             OutlinedTextField(
                 label = { Text("Enter $label") },
                 placeholder = { Text("Enter $label") },
-                value = "",
-                onValueChange = {},
+                value = textState,
+                onValueChange = onTextChange,
                 modifier = Modifier
                     .padding(start = 16.dp)
                     .weight(2f),
@@ -48,8 +48,13 @@ fun FormField(label: String, isPassword: Boolean = false, isNumber: Boolean = fa
             OutlinedTextField(
                 label = { Text("Enter $label") },
                 placeholder = { Text("Enter $label") },
-                value = "",
-                onValueChange = {},
+                value = textState,
+                onValueChange = {newValue->
+                    //Filter input to ensure only numeric values
+                    if(newValue.all{it.isDigit()}){
+                        onTextChange(newValue)
+                    }
+                },
                 modifier = Modifier
                     .padding(start = 16.dp)
                     .weight(2f),

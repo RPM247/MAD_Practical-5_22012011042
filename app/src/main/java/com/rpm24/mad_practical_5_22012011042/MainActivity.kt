@@ -1,6 +1,8 @@
 package com.rpm24.mad_practical_5_22012011042
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +31,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+fun showMsg(context: Context, msg: String){
+    val toast= Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+    toast.show()
+}
 
 
 @Preview(showBackground = true)
