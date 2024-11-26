@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,18 +23,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.testing.TestNavHostController
 import com.rpm24.mad_practical_5_22012011042.R
 import com.rpm24.mad_practical_5_22012011042.components.FormField
 import com.rpm24.mad_practical_5_22012011042.showMsg
 import com.rpm24.mad_practical_5_22012011042.ui.theme.MAD_Practical5_22012011042Theme
 
 @Composable
-fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier) {
+fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, navController: NavHostController) {
     var name by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
     var city by remember { mutableStateOf("") }
@@ -47,7 +48,7 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 10.dp)
+            .padding(horizontal = 8.dp)
     ){
         Image(
             painter = painterResource(id = R.drawable.guni_pink_logo),
@@ -62,33 +63,27 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(650.dp),
-            shape = MaterialTheme.shapes.medium,
-            elevation = CardDefaults.cardElevation(defaultElevation = 30.dp)
+                .padding(8.dp)
         ) {
-            Column(
+            FormField(label = "Name", textState = name, onTextChange = { name = it })
+            FormField(label = "Phone Number", isNumber = true, textState = phone, onTextChange = { phone = it })
+            FormField(label = "City", textState = city, onTextChange = { city = it })
+            FormField(label = "Name", textState = name, onTextChange = { name = it })
+            FormField(label = "Email", textState = email, onTextChange = { email = it })
+            FormField(label = "Password", isPassword = true, textState = password, onTextChange = { password = it })
+            FormField(label = "Confirm Password", isPassword = true, textState = confirmPassword, onTextChange = { confirmPassword = it })
+
+            Button(
+                onClick = {
+                    showMsg(context!!,"Login Successfully")
+                },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                FormField(label = "Name", textState = name, onTextChange = { name = it })
-                FormField(label = "Phone Number", isNumber = true, textState = phone, onTextChange = { phone = it })
-                FormField(label = "City", textState = city, onTextChange = { city = it })
-                FormField(label = "Name", textState = name, onTextChange = { name = it })
-                FormField(label = "Email", textState = email, onTextChange = { email = it })
-                FormField(label = "Password", isPassword = true, textState = password, onTextChange = { password = it })
-                FormField(label = "Confirm Password", isPassword = true, textState = confirmPassword, onTextChange = { confirmPassword = it })
+                    .align(Alignment.CenterHorizontally)
+                    .padding(8.dp)
+            ){
+                Text(text = "REGISTER", fontSize = 18.sp)
 
-                Button(
-                    onClick = {
-                        showMsg(context!!, "Login Successfully!!!")
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                ) {
-                    Text("REGISTER", fontSize = 18.sp)
-                }
             }
         }
         Spacer(modifier = Modifier.height(10.dp))
@@ -112,13 +107,13 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier) {
                     .padding(bottom = 50.dp)
             )
         }
-
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun RegistrationPreview() {
     MAD_Practical5_22012011042Theme {
-        RegistrationScreen()
+        val mockNavController = TestNavHostController(LocalContext.current)
+        RegistrationScreen(navController = mockNavController)
     }
 }

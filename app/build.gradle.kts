@@ -11,10 +11,9 @@ android {
     defaultConfig {
         applicationId = "com.rpm24.mad_practical_5_22012011042"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,7 +48,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation ("androidx.navigation:navigation-testing:2.7.3")
     testImplementation(libs.junit)
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

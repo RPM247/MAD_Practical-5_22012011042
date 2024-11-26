@@ -11,11 +11,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.testing.TestNavHostController
+import com.rpm24.mad_practical_5_22012011042.screen.RegistrationScreen
+import com.rpm24.mad_practical_5_22012011042.ui.theme.MAD_Practical5_22012011042Theme
+import com.rpm24.mad_practical_5_22012011042.ui.theme.MAD_Practical5_22012011042Theme
+
 
 @Composable
 fun FormField(label: String, textState: String, onTextChange: (String) -> Unit, isPassword: Boolean = false, isNumber: Boolean = false) {
@@ -67,5 +74,12 @@ fun FormField(label: String, textState: String, onTextChange: (String) -> Unit, 
                     VisualTransformation.None
             )
         }
+    }
+}
+@Preview
+@Composable
+fun FormFieldPreview(){
+    MAD_Practical5_22012011042Theme {
+        FormField(label = "hello", textState = "hello" , onTextChange = {"hello"})
     }
 }
