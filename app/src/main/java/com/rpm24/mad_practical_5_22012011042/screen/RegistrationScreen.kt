@@ -37,19 +37,22 @@ import com.rpm24.mad_practical_5_22012011042.showMsg
 import com.rpm24.mad_practical_5_22012011042.ui.theme.MAD_Practical5_22012011042Theme
 
 @Composable
-fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, navController: NavHostController) {
-    var name by remember { mutableStateOf("") }
+fun RegistrationScreen(
+    context: Context? = null,
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+){
+    var name by remember { mutableStateOf("")}
     var phone by remember { mutableStateOf("") }
     var city by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    val scrollState= rememberScrollState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 8.dp)
-    ){
+    var scrollState = rememberScrollState()
+    Column (modifier = Modifier
+        .fillMaxSize()
+        .padding(horizontal = 8.dp))
+    {
         Image(
             painter = painterResource(id = R.drawable.guni_pink_logo),
             contentDescription = "Login",
@@ -64,14 +67,13 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, na
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-        ) {
-            FormField(label = "Name", textState = name, onTextChange = { name = it })
-            FormField(label = "Phone Number", isNumber = true, textState = phone, onTextChange = { phone = it })
-            FormField(label = "City", textState = city, onTextChange = { city = it })
-            FormField(label = "Name", textState = name, onTextChange = { name = it })
-            FormField(label = "Email", textState = email, onTextChange = { email = it })
-            FormField(label = "Password", isPassword = true, textState = password, onTextChange = { password = it })
-            FormField(label = "Confirm Password", isPassword = true, textState = confirmPassword, onTextChange = { confirmPassword = it })
+        ){
+            FormField(label = "Name", textState =name , onTextChange = {name = it} )
+            FormField(label = "Phone Number", isNumber = true, textState =phone , onTextChange = {phone = it} )
+            FormField(label = "City", textState =city , onTextChange = {city = it} )
+            FormField(label = "Email", textState =email , onTextChange = {email = it} )
+            FormField(label = "Password", isPassword = true, textState = password , onTextChange = {password = it} )
+            FormField(label = "Confirm Password", isPassword = true, textState =confirmPassword , onTextChange = { confirmPassword = it} )
 
             Button(
                 onClick = {
@@ -83,8 +85,8 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, na
                     .padding(8.dp)
             ){
                 Text(text = "REGISTER", fontSize = 18.sp)
-
             }
+
         }
         Spacer(modifier = Modifier.height(10.dp))
         Row(
@@ -92,16 +94,14 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, na
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ){
-            Text(
-                text = "Do you have an account?   ",
+            Text(text = "Do you have an account?",
                 fontSize = 16.sp,
                 modifier = Modifier
-                    .padding(bottom = 50.dp)
-            )
+                    .padding(bottom = 50.dp))
             Text(
                 text = "LOGIN",
                 fontSize = 16.sp,
-                color = colorResource(id=R.color.pink),
+                color = colorResource(id = R.color.purple_200),
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .padding(bottom = 50.dp)
@@ -109,9 +109,9 @@ fun RegistrationScreen(context: Context?=null, modifier: Modifier = Modifier, na
         }
     }
 }
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun RegistrationPreview() {
+fun RegistrationPreview(){
     MAD_Practical5_22012011042Theme {
         val mockNavController = TestNavHostController(LocalContext.current)
         RegistrationScreen(navController = mockNavController)

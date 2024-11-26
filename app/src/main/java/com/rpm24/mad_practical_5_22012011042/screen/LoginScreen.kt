@@ -39,16 +39,20 @@ import com.rpm24.mad_practical_5_22012011042.showMsg
 import com.rpm24.mad_practical_5_22012011042.ui.theme.MAD_Practical5_22012011042Theme
 
 @Composable
-fun LoginScreen(context: Context?=null, modifier: Modifier = Modifier, navController: NavHostController) {
-    var email by remember { mutableStateOf("") }
+fun LoginScreen(
+    context: Context? = null,
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+){
+    var email by remember { mutableStateOf("")}
     var password by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 10.dp)
-    ) {
+    ){
         Image(
-            painter = painterResource(id = R.drawable.guni_pink_logo),
+            painter =  painterResource(id = R.drawable.guni_pink_logo),
             contentDescription = "Login",
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,14 +67,14 @@ fun LoginScreen(context: Context?=null, modifier: Modifier = Modifier, navContro
                 .height(350.dp),
             shape = MaterialTheme.shapes.medium,
             elevation = CardDefaults.cardElevation(defaultElevation = 30.dp)
-        ) {
-            Column(
+        ){
+            Column (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                FormField(label = "Email", textState = email, onTextChange = { email = it })
-                FormField(label = "Password", isPassword = true, textState = password, onTextChange = { password = it })
+                    .padding(20.dp))
+            {
+                FormField(label = "Email", textState = email, onTextChange = {email = it})
+                FormField(label = "Password", isPassword = true, textState = password , onTextChange = {password = it} )
                 Text(
                     text = "Forgot Password",
                     fontSize = 16.sp,
@@ -80,6 +84,7 @@ fun LoginScreen(context: Context?=null, modifier: Modifier = Modifier, navContro
                 )
                 Button(
                     onClick = {
+
                         showMsg(context!!,"Login Successfully!!!")
                     },
                     modifier = Modifier
@@ -96,9 +101,10 @@ fun LoginScreen(context: Context?=null, modifier: Modifier = Modifier, navContro
                 .fillMaxWidth()
                 .padding(bottom = 20.dp),
             horizontalArrangement = Arrangement.Center
-        ){
+        )
+        {
             Text(
-                text = "Don't have an account?   ",
+                text = "Don't have an account? ",
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(bottom = 50.dp)
@@ -115,6 +121,7 @@ fun LoginScreen(context: Context?=null, modifier: Modifier = Modifier, navContro
                     }
             )
         }
+
     }
 }
 @Preview

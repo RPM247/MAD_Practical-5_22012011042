@@ -9,9 +9,8 @@ import androidx.navigation.compose.composable
 import com.rpm24.mad_practical_5_22012011042.screen.LoginScreen
 import com.rpm24.mad_practical_5_22012011042.screen.RegistrationScreen
 
-
 @Composable
-fun AppNavigation(context: Context, navController: NavHostController, paddingValues: PaddingValues){
+fun AppNavigation(context: Context, navController: NavHostController, paddingValues: PaddingValues) {
     NavHost(navController = navController, startDestination = "login")
     {
         composable("login")
